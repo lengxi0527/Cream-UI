@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import Button from './components/Button/Button.vue';
-import HelloWorld from './components/HelloWorld.vue'
 import type { ButtonInstance } from './components/Button/types';
 const buttonRef = ref<ButtonInstance|null>(null)
 onMounted(() => {
@@ -17,14 +16,11 @@ const open = ()=>{
 <template>
   <header>
     <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
     </div>
   </header>
 
   <main>
-    <a>1111</a>
     <Button ref="buttonRef" @click="open">Test Button</Button>
     <Button plain >Plain Button</Button>
     <Button round>Round Button</Button>
