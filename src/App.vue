@@ -2,11 +2,17 @@
 import { onMounted, ref } from 'vue';
 import Button from './components/Button/Button.vue';
 import type { ButtonInstance } from './components/Button/types';
+import Collapse from './components/Collapse/Collapse.vue';
+import Item from './components/Collapse/CollapseItem.vue';
 const buttonRef = ref<ButtonInstance|null>(null)
+const collapseValue = ref(['a'])
 onMounted(() => {
   if (buttonRef.value) {
     console.log('buttonRef', buttonRef.value.ref)
   }
+  setTimeout(()=>{
+     collapseValue.value = ['a', 'b']
+  }, 2000)
 })
 const open = ()=>{
   console.log('1111')
@@ -40,6 +46,19 @@ const open = ()=>{
     <Button size="small">Small</Button><br/><br/>
     <Button size="large" loading>Loading</Button>
     <Button size="large" icon="arrow-up">Icon</Button><br/><br/>
+    <Collapse v-model="collapseValue">
+      <Item name="a" title="Title A">
+        <h1>headline title</h1>
+        <div> this is content a aaa </div>
+      </Item>
+      <Item name="b" title="Title B">
+        <div> this is bbbbb test </div>
+      </Item>
+      <Item name="c" title="Disabled Title" disabled>
+        <div> this is cccc test </div>
+      </Item>
+    </Collapse>
+    {{ collapseValue }}
   </main>
 </template>
 
