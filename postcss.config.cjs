@@ -1,0 +1,16 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
+module.exports = {
+  plugins: [
+   require('postcss-each-variables'),
+    //  require('autoprefixer')(),
+    require('postcss-nested'),
+    require('postcss-each')({
+      plugins: {
+        beforeEach: [
+          require('postcss-for'),
+          require('postcss-color-mix')
+        ]
+      }
+    }),
+  ]
+}
