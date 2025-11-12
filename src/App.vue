@@ -5,6 +5,7 @@ import type { ButtonInstance } from "./components/Button/types";
 import Collapse from "./components/Collapse/Collapse.vue";
 import Item from "./components/Collapse/CollapseItem.vue";
 import Icon from "./components/Icon/Icon.vue";
+import Tooltip from "./components/Tooltip/Tooltip.vue";
 const buttonRef = ref<ButtonInstance | null>(null);
 const collapseValue = ref(["a"]);
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -25,7 +26,11 @@ const open = () => {
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+    <Tooltip trigger="click" content="hello" placement="right">
+        <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+        <template #content>hiiiiiiiiii</template>
+    </Tooltip>
+
     <div class="wrapper"></div>
   </header>
   <Icon icon="arrow-up" :size="iconSize" spin type="danger" color="yellow"/>

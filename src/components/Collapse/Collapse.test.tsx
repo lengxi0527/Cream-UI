@@ -1,7 +1,8 @@
 import { mount } from "@vue/test-utils";
 import { describe, expect, test } from "vitest";
 import Collapse from "./Collapse.vue";
-import Item from "./CollapseItem.vue";
+import Item from "./CollapseItem.vue"
+
 describe('collapse', () => {
   test('basic collapse', async() => {
     const warraper = mount(() =>
