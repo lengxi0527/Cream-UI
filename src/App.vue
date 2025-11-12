@@ -1,61 +1,64 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
-import Button from './components/Button/Button.vue';
-import type { ButtonInstance } from './components/Button/types';
-import Collapse from './components/Collapse/Collapse.vue';
-import Item from './components/Collapse/CollapseItem.vue';
-const buttonRef = ref<ButtonInstance|null>(null)
-const collapseValue = ref(['a'])
+import { onMounted, ref } from "vue";
+import Button from "./components/Button/Button.vue";
+import type { ButtonInstance } from "./components/Button/types";
+import Collapse from "./components/Collapse/Collapse.vue";
+import Item from "./components/Collapse/CollapseItem.vue";
+import Icon from "./components/Icon/Icon.vue";
+const buttonRef = ref<ButtonInstance | null>(null);
+const collapseValue = ref(["a"]);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const iconSize = ref<any>("3x");
 onMounted(() => {
   if (buttonRef.value) {
-    console.log('buttonRef', buttonRef.value.ref)
+    console.log("buttonRef", buttonRef.value.ref);
   }
-  setTimeout(()=>{
-     collapseValue.value = ['a', 'b']
-  }, 2000)
-})
-const open = ()=>{
-  console.log('1111')
-}
+  setTimeout(() => {
+    collapseValue.value = ["a", "b"];
+    iconSize.value = "2xl";
+  }, 2000);
+});
+const open = () => {
+  console.log("1111");
+};
 </script>
 
 <template>
   <header>
     <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-    <div class="wrapper">
-    </div>
+    <div class="wrapper"></div>
   </header>
-
+  <Icon icon="arrow-up" :size="iconSize" spin type="danger" color="yellow"/>
   <main>
     <Button ref="buttonRef" @click="open">Test Button</Button>
-    <Button plain >Plain Button</Button>
+    <Button plain>Plain Button</Button>
     <Button round>Round Button</Button>
     <Button circle>VK</Button>
-    <Button disabled>Disabled Button</Button><br/><br/>
+    <Button disabled>Disabled Button</Button><br /><br />
     <Button type="primary">Primary</Button>
     <Button type="success">Success</Button>
     <Button type="info">Info</Button>
     <Button type="warning">Warning</Button>
-    <Button type="danger">Danger</Button><br/><br/>
+    <Button type="danger">Danger</Button><br /><br />
     <Button type="primary" plain>Primary</Button>
     <Button type="success" plain>Success</Button>
     <Button type="info" plain>Info</Button>
     <Button type="warning" plain>Warning</Button>
-    <Button type="danger" plain>Danger</Button><br/><br/>
+    <Button type="danger" plain>Danger</Button><br /><br />
     <Button size="large">Large</Button>
-    <Button size="small">Small</Button><br/><br/>
+    <Button size="small">Small</Button><br /><br />
     <Button size="large" loading>Loading</Button>
-    <Button size="large" icon="arrow-up">Icon</Button><br/><br/>
+    <Button size="large" icon="arrow-up">Icon</Button><br /><br />
     <Collapse v-model="collapseValue">
       <Item name="a" title="Title A">
         <h1>headline title</h1>
-        <div> this is content a aaa </div>
+        <div>this is content a aaa</div>
       </Item>
       <Item name="b" title="Title B">
-        <div> this is bbbbb test </div>
+        <div>this is bbbbb test</div>
       </Item>
       <Item name="c" title="Disabled Title" disabled>
-        <div> this is cccc test </div>
+        <div>this is cccc test</div>
       </Item>
     </Collapse>
     {{ collapseValue }}
