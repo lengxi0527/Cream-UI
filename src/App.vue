@@ -10,6 +10,7 @@ const buttonRef = ref<ButtonInstance | null>(null);
 const collapseValue = ref(["a"]);
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const iconSize = ref<any>("3x");
+const trigger = ref<any>('click')
 onMounted(() => {
   if (buttonRef.value) {
     console.log("buttonRef", buttonRef.value.ref);
@@ -17,6 +18,7 @@ onMounted(() => {
   setTimeout(() => {
     collapseValue.value = ["a", "b"];
     iconSize.value = "2xl";
+    trigger.value = 'hover'
   }, 2000);
 });
 const open = () => {
@@ -26,7 +28,7 @@ const open = () => {
 
 <template>
   <header>
-    <Tooltip trigger="click" content="hello" placement="right">
+    <Tooltip :trigger=trigger content="hello" placement="right">
         <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
         <template #content>hiiiiiiiiii</template>
     </Tooltip>
