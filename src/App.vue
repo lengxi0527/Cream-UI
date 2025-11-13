@@ -1,3 +1,4 @@
+<!-- eslint-disable @typescript-eslint/no-explicit-any -->
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import Button from "./components/Button/Button.vue";
@@ -8,7 +9,6 @@ import Icon from "./components/Icon/Icon.vue";
 import Tooltip from "./components/Tooltip/Tooltip.vue";
 const buttonRef = ref<ButtonInstance | null>(null);
 const collapseValue = ref(["a"]);
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const iconSize = ref<any>("3x");
 const trigger = ref<any>('click')
 onMounted(() => {
@@ -18,7 +18,7 @@ onMounted(() => {
   setTimeout(() => {
     collapseValue.value = ["a", "b"];
     iconSize.value = "2xl";
-    trigger.value = 'hover'
+    // trigger.value = 'hover'
   }, 2000);
 });
 const open = () => {
