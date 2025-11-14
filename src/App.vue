@@ -8,11 +8,16 @@ import Item from "./components/Collapse/CollapseItem.vue";
 import Icon from "./components/Icon/Icon.vue";
 import Tooltip from "./components/Tooltip/Tooltip.vue";
 import type { TooltipInstance } from "./components/Tooltip/type";
+import type { Options } from "@popperjs/core";
 const buttonRef = ref<ButtonInstance | null>(null);
-const tooltipRef = ref<TooltipInstance|null>(null)
+const tooltipRef = ref<TooltipInstance | null>(null)
 const collapseValue = ref(["a"]);
 const iconSize = ref<any>("3x");
 const trigger = ref<any>('click')
+const options: Partial<Options> = {
+  placement: "right-end",
+  strategy: 'fixed',
+}
 onMounted(() => {
   if (buttonRef.value) {
     console.log("buttonRef", buttonRef.value.ref);
@@ -26,21 +31,21 @@ onMounted(() => {
 const open = () => {
   tooltipRef.value?.show()
 };
-const close = ()=>{
+const close = () => {
   tooltipRef.value?.hide()
 }
 </script>
 
 <template>
   <header>
-    <Tooltip :trigger=trigger content="hello" placement="right" ref="tooltipRef" maunal>
-        <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-        <template #content>hiiiiiiiiii</template>
+    <Tooltip :trigger=trigger content="hello" placement="right" ref="tooltipRef" maunal :popper-options="options">
+      <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+      <template #content>hiiiiiiiiii</template>
     </Tooltip>
 
     <div class="wrapper"></div>
   </header>
-  <Icon icon="arrow-up" :size="iconSize" spin type="danger" color="yellow"/>
+  <Icon icon="arrow-up" :size="iconSize" spin type="danger" color="yellow" />
   <main>
     <Button ref="buttonRef" @click="open">Test Button</Button>
     <Button plain @click="close">Plain Button</Button>
